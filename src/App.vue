@@ -5,7 +5,8 @@
   </div>
   <div class="container">
     <!-- if u use name property, u can use ur custom prefix for animation class, i.e, we can use 'para-enter-from' instead 'v-enter-from' -->
-    <transition name="para"> 
+    <transition name="para" @before-enter="paraBeforeEnter" @enter="paraEnter" @after-enter="paraAfterEnter" 
+    @before-leave="paraBeforeLeave" @leave="paraLeave" @after-leave="paraAfterLeave"> 
       <p v-if="isParaVisible">This is only sometimes visible!</p>
     </transition>
     <button @click="togglePara">Toggle Paragraph</button>
@@ -53,6 +54,30 @@ export default {
     },
     hideUsers() {
       this.areUsersVisible = false;
+    },
+    paraBeforeEnter(el) {
+      console.log('Before Enter animation');
+      console.log(el);
+    },
+    paraEnter(el) {
+      console.log('Enter animation');
+      console.log(el);
+    },
+    paraAfterEnter(el) {
+      console.log('After Enter animation');
+      console.log(el);
+    },
+    paraBeforeLeave(el) {
+      console.log('Before Leave animation');
+      console.log(el);
+    },
+    paraLeave(el) {
+      console.log('Leave animation');
+      console.log(el);
+    },
+    paraAfterLeave(el) {
+      console.log('After Leave animation');
+      console.log(el);
     }
   },
 };
