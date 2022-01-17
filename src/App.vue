@@ -6,7 +6,8 @@
   <div class="container">
     <!-- if u use name property, u can use ur custom prefix for animation class, i.e, we can use 'para-enter-from' instead 'v-enter-from' -->
     <transition name="para" @before-enter="paraBeforeEnter" @enter="paraEnter" @after-enter="paraAfterEnter" 
-    @before-leave="paraBeforeLeave" @leave="paraLeave" @after-leave="paraAfterLeave"> 
+    @before-leave="paraBeforeLeave" @leave="paraLeave" @after-leave="paraAfterLeave"
+    @enter-cancelled="paraEnterCancelled" @leave-cancelled="paraLeaveCancelled"> 
       <p v-if="isParaVisible">This is only sometimes visible!</p>
     </transition>
     <button @click="togglePara">Toggle Paragraph</button>
@@ -33,7 +34,9 @@ export default {
       dialogIsVisible: false,
       isBlockAnimated: false,
       isParaVisible: false,
-      areUsersVisible: false
+      areUsersVisible: false,
+      enterInterval: null,
+      leaveInterval: null
     };
   },
   methods: {
@@ -56,28 +59,56 @@ export default {
       this.areUsersVisible = false;
     },
     paraBeforeEnter(el) {
-      console.log('Before Enter animation');
-      console.log(el);
+      // console.log('Before Enter animation');
+      // console.log(el);
+      el.style.opacity = 0;
     },
-    paraEnter(el) {
-      console.log('Enter animation');
-      console.log(el);
+    paraEnter(el, done) {
+      // console.log('Enter animation');
+      // console.log(el);
+      let round = 1;
+      this.enterInterval = setInterval(() => {
+        el.style.opacity = round * 0.1;
+        round++;
+        if(round > 10) {
+          clearInterval(this.enterInterval);
+          done();
+        }
+      }, 20);
     },
     paraAfterEnter(el) {
-      console.log('After Enter animation');
+      // console.log('After Enter animation');
       console.log(el);
     },
     paraBeforeLeave(el) {
-      console.log('Before Leave animation');
-      console.log(el);
+      // console.log('Before Leave animation');
+      // console.log(el);
+      el.style.opacity = 1;
     },
-    paraLeave(el) {
-      console.log('Leave animation');
-      console.log(el);
+    paraLeave(el, done) {
+      // console.log('Leave animation');
+      // console.log(el);
+      let round = 1;
+      this.leaveInterval = setInterval(() => {
+        el.style.opacity = 1 - round * 0.1;
+        round++;
+        if(round > 10) {
+          clearInterval(this.leaveInterval);
+          done();
+        }
+      }, 20);
     },
     paraAfterLeave(el) {
-      console.log('After Leave animation');
+      // console.log('After Leave animation');
       console.log(el);
+    },
+    paraEnterCancelled(el) {
+      console.log(el);
+      clearInterval(this.enterInterval);
+    },
+    paraLeaveCancelled(el) {
+      console.log(el);
+      clearInterval(this.leaveInterval);
     }
   },
 };
@@ -133,35 +164,35 @@ button:active {
 
 /* vue added css utitity classes when wrapped around 'transition' components */
 
-.para-enter-from {
-  /* opacity: 0;
-  transform: translateY(-30px); */
+/* .para-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
 }
 
 .para-enter-active {
-  /* transition: all 0.3s ease-out; */
+  transition: all 0.3s ease-out;
   animation: my-slide-frame 0.3s ease-out;
 }
 
 .para-enter-to {
-  /* opacity: 1;
-  transform: translateY(0); */
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .para-leave-from {
-  /* opacity: 1;
-  transform: translateY(0); */
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .para-leave-active {
-  /* transition: all 0.3s ease-in; */
+  transition: all 0.3s ease-in;
   animation: my-slide-frame 0.3s ease-out;
 }
 
 .para-leave-to {
-  /* opacity: 0;
-  transform: translateY(-30px); */
-}
+  opacity: 0;
+  transform: translateY(-30px);
+} */
 
 
 
