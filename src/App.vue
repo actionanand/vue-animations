@@ -5,7 +5,7 @@
   </div>
   <div class="container">
     <!-- if u use name property, u can use ur custom prefix for animation class, i.e, we can use 'para-enter-from' instead 'v-enter-from' -->
-    <transition name="para" @before-enter="paraBeforeEnter" @enter="paraEnter" @after-enter="paraAfterEnter" 
+    <transition name="para" :css="false" @before-enter="paraBeforeEnter" @enter="paraEnter" @after-enter="paraAfterEnter" 
     @before-leave="paraBeforeLeave" @leave="paraLeave" @after-leave="paraAfterLeave"
     @enter-cancelled="paraEnterCancelled" @leave-cancelled="paraLeaveCancelled"> 
       <p v-if="isParaVisible">This is only sometimes visible!</p>
@@ -164,35 +164,35 @@ button:active {
 
 /* vue added css utitity classes when wrapped around 'transition' components */
 
-/* .para-enter-from {
-  opacity: 0;
-  transform: translateY(-30px);
+.para-enter-from {
+  /* opacity: 0;
+  transform: translateY(-30px); */
 }
 
 .para-enter-active {
-  transition: all 0.3s ease-out;
+  /* transition: all 0.3s ease-out; */
   animation: my-slide-frame 0.3s ease-out;
 }
 
 .para-enter-to {
-  opacity: 1;
-  transform: translateY(0);
+  /* opacity: 1;
+  transform: translateY(0); */
 }
 
 .para-leave-from {
-  opacity: 1;
-  transform: translateY(0);
+  /* opacity: 1;
+  transform: translateY(0); */
 }
 
 .para-leave-active {
-  transition: all 0.3s ease-in;
-  animation: my-slide-frame 0.3s ease-out;
+  /* transition: all 0.3s ease-in; */
+  animation: my-slide-frame 0.3s ease-in;
 }
 
 .para-leave-to {
-  opacity: 0;
-  transform: translateY(-30px);
-} */
+  /* opacity: 0;
+  transform: translateY(-30px); */
+}
 
 
 
