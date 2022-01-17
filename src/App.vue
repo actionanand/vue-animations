@@ -4,7 +4,8 @@
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <transition>
+    <!-- if u use name property, u can use ur custom prefix for animation class, i.e, we can use 'para-enter-from' instead 'v-enter-from' -->
+    <transition name="para"> 
       <p v-if="isParaVisible">This is only sometimes visible!</p>
     </transition>
     <button @click="togglePara">Toggle Paragraph</button>
@@ -94,32 +95,32 @@ button:active {
 
 /* vue added css utitity classes when wrapped around 'transition' components */
 
-.v-enter-from {
+.para-enter-from {
   /* opacity: 0;
   transform: translateY(-30px); */
 }
 
-.v-enter-active {
+.para-enter-active {
   /* transition: all 0.3s ease-out; */
   animation: my-slide-frame 0.3s ease-out;
 }
 
-.v-enter-to {
+.para-enter-to {
   /* opacity: 1;
   transform: translateY(0); */
 }
 
-.v-leave-from {
+.para-leave-from {
   /* opacity: 1;
   transform: translateY(0); */
 }
 
-.v-leave-active {
+.para-leave-active {
   /* transition: all 0.3s ease-in; */
   animation: my-slide-frame 0.3s ease-out;
 }
 
-.v-leave-to {
+.para-leave-to {
   /* opacity: 0;
   transform: translateY(-30px); */
 }
