@@ -10,6 +10,12 @@
     </transition>
     <button @click="togglePara">Toggle Paragraph</button>
   </div>
+  <div class="container">
+    <transition name="button" mode="out-in">
+      <button @click="showUsers" v-if="!areUsersVisible">Show Users</button>
+      <button @click="hideUsers" v-else>Hide Users</button>
+    </transition>
+  </div>
   <base-modal @close="hideDialog" :open="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
@@ -25,7 +31,8 @@ export default {
     return { 
       dialogIsVisible: false,
       isBlockAnimated: false,
-      isParaVisible: false
+      isParaVisible: false,
+      areUsersVisible: false
     };
   },
   methods: {
@@ -40,6 +47,12 @@ export default {
     },
     togglePara() {
       this.isParaVisible = !this.isParaVisible;
+    },
+    showUsers() {
+      this.areUsersVisible = true;
+    },
+    hideUsers() {
+      this.areUsersVisible = false;
     }
   },
 };
@@ -123,6 +136,27 @@ button:active {
 .para-leave-to {
   /* opacity: 0;
   transform: translateY(-30px); */
+}
+
+
+
+
+.button-enter-from,
+.button-leave-to {
+  opacity: 0;
+}
+
+.button-enter-active {
+  transition: opacity 0.3s ease-out;
+}
+
+.button-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+
+.button-enter-to,
+.button-leave-from {
+  opacity: 1;
 }
 
 
