@@ -34,5 +34,19 @@ dialog {
   background-color: white;
   z-index: 100;
   border: none;
+  animation: my-modal 0.3s ease-out forwards;
+}
+
+@keyframes my-modal {
+  /* from means 0% and to means 100%, this is applicable if only two states are present */
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1)
+  }
 }
 </style>
