@@ -1,5 +1,10 @@
 <template>
-  <router-view></router-view>
+<!-- how to animate router -->
+  <router-view v-slot="slotProps">
+    <transition name="route" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
   <div class="container">
     <list-data></list-data>
   </div>
@@ -32,7 +37,7 @@
 </template>  
 
 <script>
-  import ListData from './components/ListData.vue';
+import ListData from './components/ListData.vue';
 
 export default {
   components: {
@@ -223,6 +228,14 @@ a:hover {
 .button-enter-to,
 .button-leave-from {
   opacity: 1;
+}
+
+.route-enter-active {
+  animation: my-slide-frame 0.5s ease-out;
+}
+
+.route-leave-active {
+  animation: my-slide-frame 0.5s ease-in;
 }
 
 

@@ -5,6 +5,7 @@
   <div>
     <input type="text" ref="userName" @keydown.enter="addUser">
     <br>
+    <br>
     <button @click="addUser">Add User</button>
   </div>
 </template>
