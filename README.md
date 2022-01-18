@@ -24,5 +24,8 @@ npm run lint
 
 - [Green Sock - Web animation Package](https://greensock.com/)
 
+- Use `npm i vue-router@next` if you have problem with routing
+
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -1,4 +1,5 @@
 <template>
+  <router-view></router-view>
   <div class="container">
     <list-data></list-data>
   </div>
@@ -132,7 +133,7 @@ html {
 body {
   margin: 0;
 }
-button {
+button, a {
   font: inherit;
   padding: 0.5rem 2rem;
   border: 1px solid #810032;
@@ -142,7 +143,8 @@ button {
   cursor: pointer;
 }
 button:hover,
-button:active {
+button:active,
+a:hover {
   background-color: #a80b48;
   border-color: #a80b48;
 }
