@@ -10,4 +10,8 @@ app.component('base-modal', BaseModal);
 
 app.use(router);
 
-app.mount('#app');
+// to make router is ready to give perfect router animation
+router.isReady().then(() => {
+  app.mount('#app');
+});
+
