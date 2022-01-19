@@ -3,5 +3,7 @@ module.exports = {
   devServer: {
       disableHostCheck: true
   },
-  // publicPath: '/vue-animations/'
+  publicPath: process.env.NODE_ENV === 'production'
+  ? '/vue-animations/' // note the trailing slash
+  : '/',
 }
