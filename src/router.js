@@ -4,7 +4,7 @@ import AllUsers from './pages/AllUsers.vue';
 import CourseGoals from './pages/CourseGoals.vue';
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/vue-animations/'),
   routes: [
     { path: '/', redirect: '/users' },
     { path: '/users', component: AllUsers },
